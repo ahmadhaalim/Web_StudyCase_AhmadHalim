@@ -13,7 +13,7 @@ Feature: Categories
     And User click save
     Then User see saved category with the same name
 
-  @New
+  
   Scenario: Create Categories
     Given User open moka backoffice login page
     And User input email "halimprabowo@gmail.com" on backoffice login page

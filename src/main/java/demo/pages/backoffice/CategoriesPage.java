@@ -11,9 +11,8 @@ public class CategoriesPage {
     WebDriverInstance.webDriver.get("https://backoffice.mokapos.com/library/categories");
   }
 
-  public void clickCreateCategory(){
-    WebElement button = WebDriverInstance.webDriver.findElement(By.xpath("//button[contains(text(),'Create Category')]"));
-    button.click();
+  public static String generateRandomCategoryName() {
+    return "Category-" + System.currentTimeMillis();
   }
 
   public void inputCategoryName() {
@@ -22,18 +21,40 @@ public class CategoriesPage {
     field.sendKeys(this.categoryName);
   }
 
-  public void clickSaveCategory(){
+  public void clickCreateCategory() {
+    waitABit();
+    WebElement button = WebDriverInstance.webDriver.findElement(By.xpath("//button[contains(text(),'Create Category')]"));
+    button.click();
+  }
+
+  public void clickSaveCategory() {
     WebElement button = WebDriverInstance.webDriver.findElement(By.xpath("//button[@class='btn btn-primary PhtzjEWwHfB2xdkEDI8ca']"));
     button.click();
   }
 
-  public boolean categoryName(){
-    WebElement text = WebDriverInstance.webDriver.findElement(By.xpath("//td[contains(text(),'"+this.categoryName +"')]"));
+  public void inputCategorySameName() {
+    waitABit();
+    WebElement field = WebDriverInstance.webDriver.findElement(By.xpath("//input[@placeholder='Category Name']"));
+    field.sendKeys(this.categoryName);
+  }
+
+  public boolean categoryName() {
+    WebElement text = WebDriverInstance.webDriver.findElement(By.xpath("//td[contains(text(),'" + this.categoryName + "')]"));
     return true;
   }
 
-  public static String generateRandomCategoryName(){
-    return "Category-" + System.currentTimeMillis();
+  public String sameNameNotif() {
+    WebElement element = WebDriverInstance.webDriver.findElement(By.xpath("//div[contains(text()," +
+            "'The name of the Category must be unique')]"));
+    return element.getText();
+
   }
 
+  public void waitABit() {
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
 }

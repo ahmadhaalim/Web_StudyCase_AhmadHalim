@@ -170,4 +170,16 @@ public class BackOfficeStepDefinitions {
     boolean result = itemLibraryPage.checkItemSku();
     Assert.assertTrue(result);
   }
+
+  @And("User input the category name with the same name")
+  public void userInputTheCategoryNameWithTheSameName() {
+    categoriesPage.inputCategorySameName();
+  }
+
+  @Then("Then User see {string} notification")
+  public void thenUserSeeNotification(String arg0) {
+    String result = categoriesPage.sameNameNotif();
+    Assert.assertEquals("× " +
+            "The name of the Category must be unique", result);
+  }
 }

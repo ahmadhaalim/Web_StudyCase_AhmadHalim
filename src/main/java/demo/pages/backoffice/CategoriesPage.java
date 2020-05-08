@@ -43,11 +43,9 @@ public class CategoriesPage {
     return true;
   }
 
-  public String sameNameNotif() {
-    WebElement element = WebDriverInstance.webDriver.findElement(By.xpath("//div[contains(text()," +
-            "'The name of the Category must be unique')]"));
-    return element.getText();
-
+  public boolean sameNameNotif() {
+    return WebDriverInstance.webDriver.findElement(By.xpath("//div[@class='mk-alert pad2 closeable-true']"))
+            .isDisplayed();
   }
 
   public void waitABit() {

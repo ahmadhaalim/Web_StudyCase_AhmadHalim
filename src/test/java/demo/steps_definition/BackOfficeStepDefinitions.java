@@ -178,8 +178,7 @@ public class BackOfficeStepDefinitions {
 
   @Then("Then User see {string} notification")
   public void thenUserSeeNotification(String arg0) {
-    String result = categoriesPage.sameNameNotif();
-    Assert.assertEquals("× " +
-            "The name of the Category must be unique", result);
+    boolean result = categoriesPage.sameNameNotif();
+    Assert.assertTrue(result);
   }
 }
